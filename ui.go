@@ -1,29 +1,11 @@
 package main
 
 import (
-	"image/color"
 	"machine"
 	"time"
 
-	"tinygo.org/x/drivers"
-
 	ui "github.com/itohio/tinygui"
 )
-
-func hLine(d drivers.Displayer, x, y, w int16, c color.RGBA) {
-	for w > 0 {
-		d.SetPixel(x, y, c)
-		x++
-		w--
-	}
-}
-func vLine(d drivers.Displayer, x, y, h int16, c color.RGBA) {
-	for h > 0 {
-		d.SetPixel(x, y, c)
-		y++
-		h--
-	}
-}
 
 func button(p machine.Pin) time.Duration {
 	now := time.Now()

@@ -82,30 +82,30 @@ func (w *Waterer) SetSelected(s bool) {
 
 func (w *Waterer) display(d drivers.Displayer, x, y int16) {
 	y += 4
-	vLine(d, x, y+1, HEIGHT-2, white)
-	vLine(d, x+WIDTH-1, y+1, HEIGHT-2, white)
+	ui.VLine(d, x, y+1, HEIGHT-2, white)
+	ui.VLine(d, x+WIDTH-1, y+1, HEIGHT-2, white)
 
 	if w.Selected() {
-		vLine(d, x+1, y, HEIGHT, white)
-		vLine(d, x+WIDTH-2, y, HEIGHT, white)
+		ui.VLine(d, x+1, y, HEIGHT, white)
+		ui.VLine(d, x+WIDTH-2, y, HEIGHT, white)
 	}
 
 	th := int16(w.cfg.Low(w.index) * float32(WIDTH))
 	if w.Selected() && !w.setHighTh {
-		vLine(d, x+th, y, HEIGHT, white)
+		ui.VLine(d, x+th, y, HEIGHT, white)
 	} else {
-		vLine(d, x+th, y+4, 2, white)
+		ui.VLine(d, x+th, y+4, 2, white)
 	}
 
 	th = int16(w.cfg.High(w.index) * float32(WIDTH))
 	if w.Selected() && w.setHighTh {
-		vLine(d, x+th, y, HEIGHT, white)
+		ui.VLine(d, x+th, y, HEIGHT, white)
 	} else {
-		vLine(d, x+th, y+2, 2, white)
+		ui.VLine(d, x+th, y+2, 2, white)
 	}
 
 	val := w.lastVal
-	hLine(d, x, y+4, int16(val*float32(WIDTH)), white)
+	ui.HLine(d, x, y+4, int16(val*float32(WIDTH)), white)
 }
 
 func (w *Waterer) Interact(cmd ui.UserCommand) bool {
